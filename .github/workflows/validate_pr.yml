@@ -1,12 +1,11 @@
 name: Validate PR
 on:
   pull_request:
-    branches:
-      - master
+    branches: [ cure-master ]
 
 jobs:
-  build-test-package:
-    name: Build and Package
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -14,6 +13,5 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-
-      - name: Build and Package with Maven
-        run: ./mvnw clean -U install
+      - name: Build with Maven
+        run: ./mvnw clean package
